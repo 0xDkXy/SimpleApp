@@ -2,3 +2,5 @@ test
 *.log
 *__pycache__*
 *.db
+app/__pycache__
+app/routers/__pycache__
