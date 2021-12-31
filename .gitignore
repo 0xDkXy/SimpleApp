@@ -4,3 +4,4 @@ test
 *.db
 app/__pycache__
 app/routers/__pycache__
+.vscode
