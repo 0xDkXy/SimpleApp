@@ -1,21 +1,29 @@
-from sqlite3 import connect
+from StartDB import startDB
 
-# loginDB=connect('user.db')
 
-def insert(user:str,passwd:str):
-    db=connect('user.db')
-    cur=db.cursor()
-    cur.execute('insert ')
-
-def loginQuery(user:str,passwd:str)->bool:
-    db=connect('./data/user.db')
-    cur=db.cursor()
+@startDB
+def signIn(user:str,passwd:str):
     Qstr='\
         SELECT PASSWD FROM UserPasswd\
-        WHERE PASSWD = "{}"'.format(passwd)
-    pwd=cur.execute(Qstr)
-    db.commit()
-    for row in pwd:
-        if row[0]==passwd:
-            return True
-    return False
+        WHERE ID = "{}"'.format(user)
+    return Qstr
+
+def SignIn(user:str,passwd:str)->bool:
+    val=list(signIn(user,passwd))
+    # print(list(val))
+    return True if val[0][0]==passwd else False
+
+@startDB
+def signUp(user:str,passwd:str):
+    Qstr = '\
+        INSERT INTO UserPasswd (ID,PASSWD)\
+        VALUES ("{}","{}")'.format(user,passwd)
+    return Qstr
+
+def SignUp(user:str,passwd:str)->bool:
+    val=list(signIn(user,passwd))
+    if val:
+        return False
+    else:
+        signUp(user,passwd)
+        return True
