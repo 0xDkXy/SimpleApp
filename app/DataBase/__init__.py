@@ -37,9 +37,9 @@ try:
     cur.execute('create table if not exists customer \
         (CID VARCHAR NOT NULL,\
         CNAME VARCHAR NOT NULL,\
-        UID VARCHAR NOT NULL,\
         ADDRES TEXT NOT NULL,\
-        PHONE VARCHAR\
+        PHONE VARCHAR,\
+        UID VARCHAR NOT NULL\
         );\
     ')
 except:
