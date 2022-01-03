@@ -1,4 +1,4 @@
-from StartDB import startDB
+from .StartDB import startDB
 
 @startDB
 def query(user:str):
@@ -9,10 +9,21 @@ def query(user:str):
 
 
 @startDB
-def insert(CID:str,CNAME:str,UID:str,ADDRES:str,PHONE:str):
-    Qstr='INSERT INTO customer (CID,CNAME,UID,ADDRES,PHONE)\
-        VALUES ("{}","{}","{}","{}","{}")'.format(CID,CNAME,UID,ADDRES,PHONE) 
-    return Qstr
+def insert(cIf):
+    '''
+    cIf :customere infomation
+    '''
+    try:
+        Qstr='INSERT INTO customer (CID,CNAME,ADDRES,PHONE,UID)\
+        VALUES ("{}","{}","{}","{}","{}")'.format(
+            cIf['CID'],
+            cIf['CName'],
+            cIf['addres'],
+            cIf['phone'],
+            cIf['UID']) 
+        return Qstr
+    except Exception as e:
+        raise e
 
 
 
