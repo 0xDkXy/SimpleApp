@@ -9,5 +9,5 @@ def startDB(func):
         ret=func(*args,**kargs)
         queryVal=cur.execute(ret)
         db.commit()
-        return queryVal
+        return queryVal.fetchall()
     return wrapper
