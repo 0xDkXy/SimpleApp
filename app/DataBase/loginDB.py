@@ -1,4 +1,4 @@
-from StartDB import startDB
+from .StartDB import startDB
 
 
 @startDB
@@ -9,7 +9,7 @@ def signIn(user:str,passwd:str):
     return Qstr
 
 def SignIn(user:str,passwd:str)->bool:
-    val=list(signIn(user,passwd))
+    val=signIn(user,passwd)
     # print(list(val))
     return True if val[0][0]==passwd else False
 
@@ -21,7 +21,7 @@ def signUp(user:str,passwd:str):
     return Qstr
 
 def SignUp(user:str,passwd:str)->bool:
-    val=list(signIn(user,passwd))
+    val=signIn(user,passwd)
     if val:
         return False
     else:
