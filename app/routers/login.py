@@ -1,10 +1,11 @@
 from typing import Optional
-from fastapi import APIRouter,Depends
+from fastapi import APIRouter,Depends,status
 from pydantic import BaseModel
 from hashlib import sha256
 from ..DataBase.loginDB import SignIn, SignUp
 from ..core.aliveList import aliveUpdate
 from ..tools.token import getToken
+from fastapi.responses import JSONResponse
 
 class User(BaseModel):
     id:str
@@ -38,7 +39,8 @@ def signIn(user:User):
             'msg':'signIn successfully'
         }
     else:
-        return {'msg':'Wrong ID or Passwords',}
+        # return 
+        return JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED, content={'msg':'Wrong ID or Passwords',})
 
 @router.post('/signUp')    
 def signUp(user:User):
@@ -48,5 +50,6 @@ def signUp(user:User):
             'msg':'signUp successfully',
         }
     else:
-        return {'msg':'repeated ID'}
+        return JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED, content={'msg':'repeated ID'})
+        # return 
     

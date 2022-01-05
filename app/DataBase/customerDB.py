@@ -7,6 +7,24 @@ def query(user:str):
         WHERE UID="{}"'.format(user)
     return Qstr
 
+@startDB
+def queryAll(user:str):
+    Qstr='SELECT CID,CNAME,ADDRES,PHONE,UID\
+        FROM customer'.format(user)
+    return Qstr
+
+@startDB
+def queryByCID(CID:str):
+    Qstr='SELECT CID,CNAME,ADDRES,PHONE\
+        FROM customer\
+        WHERE CID="{}"'.format(CID)
+    return Qstr
+
+@startDB
+def deleteByCID(CID:str):
+    Qstr='DELETE FROM customer\
+        WHERE CID="{}"'.format(CID)
+    return Qstr
 
 @startDB
 def insert(cIf):

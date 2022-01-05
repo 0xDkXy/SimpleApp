@@ -44,7 +44,7 @@ class Alive:
             # _=int(self.__Alive[user][16:])
             # print(_)
             if not self.__isAlive(int(self.__Alive[user][16:])):
-                self.delete(user)
+                self.__delete(user)
     
 AliveList=Alive()
 
@@ -52,7 +52,7 @@ def aliveUpdate(new:dict)->None:
     AliveList.update(new)
 
 def aliveClear()->None:
-    AliveList.clear();
+    AliveList.clear()
 
 def aliveDelete(UID:str,token:str)->None:
     if aliveVerify(UID,token):
